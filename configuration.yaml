@@ -9,10 +9,10 @@
 #                                                                                                   
 homeassistant:
   name: Home
-  latitude: 12.9629546
-  longitude: 74.8852707
+  latitude: *******
+  longitude: ********
   unit_system: metric
-  time_zone: Asia/Kolkata
+  time_zone: *****
   customize: !include customize.yaml
 
 frontend:
@@ -30,7 +30,7 @@ frontend:
   
 http:
   # Uncomment this to add a password (recommended!)
-  # api_password: esp8266
+  # api_password: *****
   # Uncomment this if you are using SSL or running in Docker etc
   # base_url: example.duckdns.org:8123
   
@@ -77,20 +77,17 @@ tts:
 
 
 mqtt:
-  broker: 192.168.0.6
+  broker: [YOUR BROKER IP ADDRESS]
   port: 1883
   client_id: HAT
   keepalive: 60
-#  username: HAT
-#  password: 123456789
+  username: [USERNAME]
+  password: [PASSWORD]
 
 notify me:
   name: mpb
   platform: pushbullet
-  target: device/Xiaomi Redmi Note 4
-  api_key: o.LJAv4uNFIPSnmd7g9mmJhbCszxaAihwX
-
-
+  api_key: [YOUR API]
 
 map:
 
@@ -101,27 +98,27 @@ device_tracker:
 camera:
   - platform: mjpeg
     friendly_name: Porch
-    mjpeg_url: http://192.168.43.50:8000/video
+    mjpeg_url: [IP CAMERA ADDRESS]
     
 media_player:
   - platform: kodi
-    host: 192.168.0.5
-    username: kodi
-    password: kodi
+    host: [KODI SERVER IP ADDRESS]
+    username: [YOUR USERNAME]
+    password: [YOUR PASSWORD]
     port: 8080
     enable_websockets: false
      
 zone 1:
   name: Home
-  latitude: 12.9629546
-  longitude: 74.8852707
+  latitude: [YOUR lat]
+  longitude: [YOUR long]
   radius: 5
   icon: mdi:account-multiple
 
 zone 2:
   name: School
-  latitude: 12.876134
-  longitude: 74.839403
+  latitude: *****
+  longitude: *****
   radius: 500
   icon: mdi:account-multiple
 
