@@ -49,4 +49,4 @@ Configure [OwnTracks](https://owntracks.org/) with Home Assistant. OwnTracks all
 ## Acknowledgements
 - **HomeAssistant** by far the most awesome home automation server there is.
 - Home Assistant Community - again one of the best. Credits for all custom-ui components and themes.
-- [mertenats/Open-Home-Automation](https://github.com/mertenats/Open-Home-Automation) - credits for the aweseome esp8266-Pir code.
+- [mertenats/Open-Home-Automation](https://github.com/mertenats/Open-Home-Automation) - credits for the aweseome esp8266-Pir, rgb-led code.
