@@ -1,0 +1,23 @@
+bharath:
+  primary-color: '#333577'
+  primary-text-color: '#090A3B'
+  paper-grey-50: '#DEDEDE'
+  primary-background-color: '#303030'
+  paper-card-background-color: "#5E5E5E"
+  text-primary-color: '#FFFFFF'
+  paper-toggle-button-checked-button-color: '#FFD700'
+  paper-toggle-button-checked-bar-color: '#FFA726'
+  paper-toggle-button-checked-ink-color: '#FFA726'
+  paper-toggle-button-unchecked-button-color: '#EAEAEA'
+  paper-toggle-button-unchecked-bar-color: '#DEDEDE'
+  paper-toggle-button-unchecked-ink-color: '#DEDEDE'
+  paper-slider-knob-color: '#FFD700'
+  paper-slider-knob-start-color: '#FFD700'
+  paper-slider-pin-color: '#FFD700'
+  paper-slider-active-color: '#FFD393'
+  paper-slider-secondary-color: '#DEDEDE'
+  paper-slider-container-color: '#F2F2F2'
+  ha-label-badge-color: '#DEDEDE'
+  label-badge-background-color: "#000000"
+  label-badge-text-color: "#FFFFFF"
+  paper-tabs-selection-bar-color: '#DEDEDE'
