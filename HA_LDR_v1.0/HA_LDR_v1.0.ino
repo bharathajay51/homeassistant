@@ -1,3 +1,11 @@
+/*
+This code uses a LDR sensor wired up to an esp8266 module to sense ambient light itensity in a room. It then relays this information 
+back to the home assistant server using mqtt connection. The LDR sensor is connected to one of the analog inputs (A0) of the 
+microcontroller.
+
+Credits @mertenats (https://github.com/mertenats/Open-Home-Automation).
+*/
+
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
