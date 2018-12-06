@@ -1,0 +1,53 @@
+    light.rgb_light:
+      icon: mdi:lightbulb-on
+      # custom_ui_state_card: state-card-custom-ui
+      # state_card_mode: break-slider
+      # stretch_slider: true
+      # show_last_changed: false
+      # theme: happy
+      # slider_theme:
+        # min: 10
+        # max: 200
+        # pin: true
+        # off_when_min: false
+        # report_when_not_changed: false 
+        
+    light.bulb:
+      friendly_name: Tube Light
+      icon: mdi:window-minimize
+      # custom_ui_state_card: state-card-custom-ui
+      # extra_badge:
+        # - entity_id: binary_sensor.motion
+        # - entity_id: binary_sensor.light
+
+
+    fan.fan:
+      custom_ui_state_card: state-card-custom_fan
+        
+    binary_sensor.moisture:
+      hidden: true
+      device_class: moisture
+      
+    binary_sensor.Motion:
+      hidden: false
+      device_class: motion
+      
+    binary_sensor.Light:
+      hidden: false
+      device_class: light
+
+    sensor.water_level:
+      hidden: true
+      
+    switch.bedroom_fan:
+      friendly_name: Bedroom Fan
+      icon: mdi:fan
+
+#    switch.light:
+#      friendly_name: Bulb
+#      icon: mdi:lightbulb
+    
+    light.tube_light:
+      hidden: true
+      friendly_name: Tube Light
+      icon: mdi:window-minimize

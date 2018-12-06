@@ -1,0 +1,14 @@
+  Office:
+    name: Room
+    entities:
+      - fan.fan
+      - light.bulb
+      - light.rgb_light
+      - light.tube_light
+      
+  Bedroom:
+    name: Bedroom
+    entities:
+      - switch.bedroom_fan
+      - light.bedroom_light
+      

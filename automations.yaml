@@ -1,0 +1,75 @@
+# - alias: 'ENTRY'
+  # hide_entity: True
+  # trigger:
+    # platform: numeric_state
+    # entity_id: sensor.trash
+    # above: 4
+  # condition:
+    # condition: zone
+    # entity_id: device_tracker.bharath_phone
+    # zone: zone.home
+    # event: enter
+  # action:
+    # - service: switch.turn_on
+      # entity_id: switch.bin
+    
+- alias: 'Occupncy in Daylight'
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: binary_sensor.Motion
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: binary_sensor.light
+    state: 'on'
+  action:
+    - service: fan.turn_on
+      entity_id: fan.fan
+    - service: light.turn_off
+      entity_id: light.bulb
+      
+- alias: 'Occupncy in Night'
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: binary_sensor.Motion
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: binary_sensor.light
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.bulb
+    - service: fan.turn_on
+      entity_id: fan.fan
+      
+- alias: 'No Occupncy'
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: binary_sensor.Motion
+    to: 'off'
+    for:
+      minutes: 5
+  action:
+    - service: homeassistant.turn_off
+      entity_id: light.bulb
+    - service: homeassistant.turn_off
+      entity_id: fan.fan
+    - service: homeassistant.turn_off
+      entity_id: light.rgb_light    
+      
+
+- alias: Front Door
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion
+    to: 'on'
+  action:
+    service: notify.mpb
+    data:
+      title: "Office"
+      target: device/Xiaomi Redmi Note 4
+      message: "Movement detected"

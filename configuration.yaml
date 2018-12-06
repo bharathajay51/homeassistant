@@ -1,0 +1,234 @@
+# $$\       $$\                 $$$$$$$\    $$\   
+# $$ |      $$ |                $$  ____| $$$$ |  
+# $$$$$$$\  $$$$$$$\   $$$$$$\  $$ |      \_$$ |  
+# $$  __$$\ $$  __$$\  \____$$\ $$$$$$$\    $$ |  
+# $$ |  $$ |$$ |  $$ | $$$$$$$ |\_____$$\   $$ |  
+# $$ |  $$ |$$ |  $$ |$$  __$$ |$$\   $$ |  $$ |  
+# $$$$$$$  |$$ |  $$ |\$$$$$$$ |\$$$$$$  |$$$$$$\ 
+# \_______/ \__|  \__| \_______|\______/ \______|
+#                                                                                                   
+homeassistant:
+  name: Home
+  latitude: 12.9629546
+  longitude: 74.8852707
+  unit_system: metric
+  time_zone: Asia/Kolkata
+  customize: !include customize.yaml
+
+frontend:
+  extra_html_url:
+    - /local/custom_ui/state-card-custom-ui.html
+    - /local/custom_ui/state-card-with-speed.html
+    - /local/custom_ui/fan-model.html
+    - /local/custom_ui/state-card-custom_fan.html
+    - /local/custom_ui/state-card-tiles.html
+  extra_html_url_es5:
+    - /local/custom_ui/state-card-custom-ui-es5.html
+    - /local/custom_ui/state-card-tiles_es5.html
+  themes: !include_dir_merge_named themes/
+    
+  
+http:
+  # Uncomment this to add a password (recommended!)
+  # api_password: esp8266
+  # Uncomment this if you are using SSL or running in Docker etc
+  # base_url: example.duckdns.org:8123
+  
+updater:
+
+#discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+config:
+
+cloud:
+
+alexa:
+  intents:
+  
+  MotionIntent:
+    speech:
+      type: plaintext
+      text: >
+        Motion  is 
+        {% if is_state("binary_sensor.motion", "on") %}
+          detected
+        {% else %}
+          not detected 
+        {% endif %}.
+# Weather Prediction
+sensor:
+  platform: yr
+
+# Text to speech
+tts:
+  platform: google
+
+
+mqtt:
+  broker: 192.168.0.6
+  port: 1883
+  client_id: HAT
+  keepalive: 60
+#  username: HAT
+#  password: 123456789
+
+notify me:
+  name: mpb
+  platform: pushbullet
+  target: device/Xiaomi Redmi Note 4
+  api_key: o.LJAv4uNFIPSnmd7g9mmJhbCszxaAihwX
+
+
+
+map:
+
+device_tracker:
+  - platform: owntracks
+
+  
+camera:
+  - platform: mjpeg
+    friendly_name: Porch
+    mjpeg_url: http://192.168.43.50:8000/video
+    
+media_player:
+  - platform: kodi
+    host: 192.168.0.5
+    username: kodi
+    password: kodi
+    port: 8080
+    enable_websockets: false
+     
+zone 1:
+  name: Home
+  latitude: 12.9629546
+  longitude: 74.8852707
+  radius: 5
+  icon: mdi:account-multiple
+
+zone 2:
+  name: School
+  latitude: 12.876134
+  longitude: 74.839403
+  radius: 500
+  icon: mdi:account-multiple
+
+######################################   switches ###########################################
+switch:
+  - platform: mqtt
+    name: "Bedroom Fan"
+    state_topic: "ha/bedroom_fan/status"
+    command_topic: "ha/bedroom_fan/switch"
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false
+    qos: 0
+    retain: true
+    
+########################### FANS ####################################################
+fan:
+  - platform: mqtt
+    name: "Fan"
+    state_topic: "office/fan"
+    command_topic: "office/fan/switch"
+    speed_state_topic: "office/fan/speed"
+    speed_command_topic: "office/fan/speed/set"
+    qos: 0
+    payload_on: "true"
+    payload_off: "false"
+    payload_low_speed: "low"
+    payload_medium_speed: "med"
+    payload_high_speed: "high"
+    speeds:
+      - low
+      - medium
+      - high
+############################# LIGHTS ################################################
+light:
+  - platform: mqtt
+    name: 'RGB Light'
+    state_topic: 'office/rgb1/light/status'
+    command_topic: 'office/rgb1/light/switch'
+    brightness_state_topic: 'office/rgb1/brightness/status'
+    brightness_command_topic: 'office/rgb1/brightness/set'
+    rgb_state_topic: 'office/rgb1/rgb/status'
+    rgb_command_topic: 'office/rgb1/rgb/set'
+    brightness_scale: 100
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false
+    
+  - platform: mqtt
+    name: 'Bulb'
+    state_topic: 'ha/light1/status'
+    command_topic: 'ha/light1/switch'
+    optimistic: false
+    payload_on: "ON"
+    payload_off: "OFF"
+    
+  - platform: mqtt
+    name: 'Bedroom Light'
+    state_topic: 'ha/bedroom_light/status'
+    command_topic: 'ha/bedroom_light/switch'
+    optimistic: false
+    payload_on: "ON"
+    payload_off: "OFF"
+    
+  - platform: mqtt
+    name: 'Tube light'
+    state_topic: 'ha/light2/status'
+    command_topic: 'ha/light2/switch'
+    optimistic: false
+    payload_on: "ON"
+    payload_off: "OFF"
+    
+automation: !include automations.yaml
+
+########################################  BINARY SENSORS  ############################################
+binary_sensor:
+  - platform: mqtt
+    state_topic: "sensor/rainfall"
+    name: "moisture"
+    qos: 0
+    payload_on: "1"
+    payload_off: "0"
+    
+  - platform: mqtt
+    state_topic: "sensor/PIR"
+    name: "Motion"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+
+  - platform: mqtt
+    state_topic: "sensor/light"
+    name: "Light"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+ 
+###################################### GROUPS  ##################################
+group: !include groups.yaml
+
+###################################### TEMPLATES ###############################
+# sensor:
+#  - platform: template
+#    sensors:
+#      trash:
+#        value_template: >-
+#          {{ states.binary_sensor.moisture.state }}
+#        icon_template: >-
+#          {% if is_state("binary_sensor.moisture", "on") %}mdi:delete{% else %}mdi:delete-empty{% endif %}
+################################### END ###################################  
