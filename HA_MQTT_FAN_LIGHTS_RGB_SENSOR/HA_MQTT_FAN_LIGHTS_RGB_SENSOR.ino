@@ -1,3 +1,9 @@
+/*
+The below code implements configuration of multiple lights, sensors, fan into a single module(NODE MCU/wemos)
+
+Credits @mertenats (https://github.com/mertenats/Open-Home-Automation)
+*/
+
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include <Servo.h>
@@ -8,17 +14,17 @@
 
 // Wifi: SSID and password
 
-const char* WIFI_SSID = "ssid";
-const char* WIFI_PASSWORD = "vasu&bharath";
+const char* WIFI_SSID = "";
+const char* WIFI_PASSWORD = "";
 
 
 // MQTT: ID, server IP, port, username and password
 
-const PROGMEM char* MQTT_CLIENT_ID = "office_switches_sensors";
-const PROGMEM char* MQTT_SERVER_IP = "192.168.0.6";//m12.cloudmqtt.com
-const PROGMEM uint16_t MQTT_SERVER_PORT = 1883;//17978
-const PROGMEM char* MQTT_USER = "";//waterlevelS
-const PROGMEM char* MQTT_PASSWORD = "";//123456789
+const PROGMEM char* MQTT_CLIENT_ID = "";
+const PROGMEM char* MQTT_SERVER_IP = "";
+const PROGMEM uint16_t MQTT_SERVER_PORT = ;
+const PROGMEM char* MQTT_USER = "";
+const PROGMEM char* MQTT_PASSWORD = "";
 
 // MQTT: topics
 
