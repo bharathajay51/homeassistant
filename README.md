@@ -42,9 +42,34 @@ For older versions install [homebridge-homeassistant](https://github.com/home-as
 
 ### PushBullet
 Configure [PushBullet](https://www.pushbullet.com/) for push notifications (you will need api key to perform push notifications).
+To add Pushbullet to your configuration add the following lines to your configuration.yaml file:
+```
+notify me:
+  name: mpb
+  platform: pushbullet
+  api_key: YourAPIkey
+```
+### Kodi
+[Kodi](https://kodi.tv/) is a cross platform media streaming software that you can install on your android smart tv or even a [raspberry pi zero](https://www.raspberrypi.org/products/raspberry-pi-zero/). Its highly customizable and open-source. After setting up Kodi, go to > settings → services → control → allow remote control via HTTP
+
+After this just add the following lines to your configuration.yaml file:
+```
+media_player:
+  - platform: kodi
+    host: IP ADDR OF THE KODI box
+    username: 
+    password
+    port:
+```
 
 ### Configure OwnTracks
-Configure [OwnTracks](https://owntracks.org/) with Home Assistant. OwnTracks allows you to track your devices in real time and thus assists in various automations like turning on lights when you are near your home.
+Configure [OwnTracks](https://owntracks.org/) with Home Assistant. OwnTracks allows you to track your devices in real time and thus assists in various automations like turning on lights when you are near your home. In order to setup OwnTracks you need an online mqtt broker (cloud mqtt maybe coz if ur using emqttd u will have to port forward all requests). After choosing your mqtt broker set up OwnTracks by downloading it to your device and changing the necessary parameters under the preferences tab.
+Add the following lines to your configuration.yaml file:
+```
+device_tracker:
+  platform: owntracks
+  max_gps_accuracy: 200
+```  
 
 ## Acknowledgements
 - **HomeAssistant** by far the most awesome home automation server there is.
